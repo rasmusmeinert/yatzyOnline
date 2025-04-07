@@ -23,13 +23,13 @@ app.get("/getPlayerScores", (request, response) => {
 
 
 app.post("/throwDice", (request, response) => {
+  console.log('Dice thrown')
   logic.throwDice();
   response.status(201);
   response.send();
 })
 
 app.post("/setScore", (request, response) => {
-  //Maaske virker det her ikke, men altsaa ideen er meget god
   logic.playerScores[request.body.index] = request.body.score;
   logic.resetDice;
   logic.resetThrowCount;
