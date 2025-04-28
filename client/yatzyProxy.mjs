@@ -1,14 +1,14 @@
-import fetch from "node-fetch";
-const url = "http://localhost:8000"
+// import fetch from "node-fetch";
+const baseUrl = "http://localhost:8000"
 
-async function get(url) {
+export async function get(url) {
   const respons = await fetch(url);
   if (respons.status !== 200) // OK
     throw new Error(respons.status);
   return await respons.json();
 }
 
-async function post(url, objekt) {
+export async function post(url, objekt) {
   const respons = await fetch(url, {
     method: "POST",
     body: JSON.stringify(objekt),
@@ -19,70 +19,67 @@ async function post(url, objekt) {
   return await respons.text();
 }
 
-async function getThrowCount() {
+export async function getThrowCount() {
   let throwCount;
   try {
-    throwCount = await get(url + "/getThrowCount");
+    throwCount = await get(baseUrl + "/getThrowCount");
   } catch (error) {
     console.log(error);
   }
   return throwCount;
 }
 
-async function getDice() {
+export async function getDice() {
   let dice;
   try {
-    dice = await get(url + "/getDice");
+    dice = await get(baseUrl + "/getDice");
   } catch (error) {
     console.log(error);
   }
   return dice;
 }
 
-async function getPlayerScores() {
+export async function getPlayerScores() {
   let dice;
   try {
-    dice = await get(url + "/getPlayerScores");
+    dice = await get(baseUrl + "/getPlayerScores");
   } catch (error) {
     console.log(error);
   }
   return dice;
 }
 
-async function getCurrentScores() {
+export async function getCurrentScores() {
   let dice;
   try {
-    dice = await get(url + "/getCurrentScores");
+    dice = await get(baseUrl + "/getCurrentScores");
   } catch (error) {
     console.log(error);
   }
   return dice;
 }
 
-async function throwDice() {
+export async function throwDice() {
   try {
-    let respons = post(url + "/throwDice", {});
+    let respons = await post(baseUrl + "/throwDice", {});
   } catch (error) {
     console.log(error)
   }
 }
 
-async function toggleHold(die) {
+export async function toggleHold(die) {
   try {
-    let respons = post(url + "/toggleHold", {die: die});
+    let respons = await post(baseUrl + "/toggleHold", {die: die});
   } catch (error) {
     console.log(error)
   }
 }
 
-async function setScore(index) {
+export async function setScore(index) {
   try {
-    let response = post(url + "/setScore", { index: index})
+    let response = await post(baseUrl + "/setScore", { index: index})
   } catch (error) {
     console.log(error)
   }
 }
-
-throwDice();
-setScore(1);
 
