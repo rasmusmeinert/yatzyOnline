@@ -36,7 +36,6 @@ async function getDice() {
   } catch (error) {
     console.log(error);
   }
-  console.log(dice)
   return dice;
 }
 async function throwDice() {
