@@ -47,7 +47,7 @@ async function rollClick(event) {
     }
 }
 
-async function toggleHold(event) {
+async function toggleHold(event) { //TODO virker ikke nu
   if (await dice.getThrowCount() != 0) {
     let diceNumber = event.target.id.charAt(3)
     //Fixes off by one error
@@ -56,28 +56,29 @@ async function toggleHold(event) {
     if (die.hold == true) {
       event.target.style.border = '0px solid'
       event.target.style.borderRadius = "15px"
-      die.hold = false;
+      die.hold = false;//TODO det her kreaver et post paa serveren
     } else {
       event.target.style.border = '2px solid #fe8019'
       event.target.style.borderRadius = "18px"
-      die.hold = true;
+      die.hold = true;//TODO ogsaa her
     }
   }
 }
 
 async function selectScore(event) {
+  //Finds corresponding textfield to the button that is pressed
   let index = btnScores.indexOf(event.target)
   let textField = textFields[index]
-  let score = textField.value
-  let playerScore = await getPlayerScores()[index];
-  if (score == 0) {
-    playerScore = 0
-  } else {
-    playerScore = parseInt(score)
-  }
+  let score = textfield.value
+  //Posts a score serverside with /setScore(index,post)
+  dice.setScore(index);
+
+  //Disables button, so that score can no longer be set
   textField.style.backgroundColor = '#83a598'
-  resetThrowCount() //TODO
   event.target.disabled = true
+
+  //TODO, her opdatere vi den visuelle representation af point felterne
+  resetThrowCount()
   total.value = dice.totalScore() //TODO
   pairSum.value = dice.pairScore() //TODO
   bonus.value = dice.getBonus() //TODO
@@ -85,8 +86,7 @@ async function selectScore(event) {
 
 
 async function resetThrowCount() {
-  dice.resetThrowCount() //TODO
-  turns.innerHTML = 3 - (await getThrowCount()); //??
+  turns.innerHTML = 3 - (await getThrowCount());
   dice.resetDice() //TODO
   updateDieImage()
   smartUpdateScores()
@@ -102,11 +102,13 @@ function resetHold() {
 
 
 //Updates all scores that are not already set in the playerscores
-function smartUpdateScores() {
+async function smartUpdateScores() {
+  playerScores = await dice.getPlayerScores();
+  currentScores = await dice.getCurrentScores();
   for (let textField in textFields) {
-    if (dice.playerScores[textField] == undefined) { //TODO
-      if (dice.currentScores[textField] != 0) { //TODO
-        textFields[textField].value = dice.currentScores[textField] //TODO
+    if (playerScores[textField] == undefined) {
+      if (currentScores[textField] != 0) {
+        textFields[textField].value = currentScores[textField]
       } else {
         textFields[textField].value = ""
       }

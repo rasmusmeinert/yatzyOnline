@@ -29,10 +29,19 @@ app.post("/throwDice", (request, response) => {
   response.send();
 })
 
+app.post("/toggleHold", (request, response) => {
+  let die = logic.dice[request.body.die];
+  die.hold = die.hold == true ? false : true;
+  console.log(`Die ${request.body.die} hold is now ${die.hold}`)
+  response.status(201);
+  response.send();
+})
+
 app.post("/setScore", (request, response) => {
-  logic.playerScores[request.body.index] = request.body.score;
-  logic.resetDice;
-  logic.resetThrowCount;
+  logic.playerScores[request.body.index] = logic.currentScores[request.body.index];
+  console.log(`Score ${request.body.index} is now ${logic.currentScores[request.body.index]}`)
+  logic.resetDice();
+  logic.resetThrowCount();
   response.status(201);
   response.send();
 

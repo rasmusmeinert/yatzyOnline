@@ -38,6 +38,27 @@ async function getDice() {
   }
   return dice;
 }
+
+async function getPlayerScores() {
+  let dice;
+  try {
+    dice = await get(url + "/getPlayerScores");
+  } catch (error) {
+    console.log(error);
+  }
+  return dice;
+}
+
+async function getCurrentScores() {
+  let dice;
+  try {
+    dice = await get(url + "/getCurrentScores");
+  } catch (error) {
+    console.log(error);
+  }
+  return dice;
+}
+
 async function throwDice() {
   try {
     let respons = post(url + "/throwDice", {});
@@ -46,14 +67,22 @@ async function throwDice() {
   }
 }
 
-async function setScore(index, score) {
+async function toggleHold(die) {
   try {
-    let response = post(url + "/setScore", { index: index, score: score })
+    let respons = post(url + "/toggleHold", {die: die});
   } catch (error) {
     console.log(error)
   }
 }
 
+async function setScore(index) {
+  try {
+    let response = post(url + "/setScore", { index: index})
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-//TODO, flere fejl her paa getDice, vi faar ikke hold med, og der er noget med pending promise??
-console.log(getDice());
+throwDice();
+setScore(1);
+
