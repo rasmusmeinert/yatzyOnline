@@ -44,7 +44,7 @@ async function init() {
       await dice.throwDice()
       updateDieImage()
       smartUpdateScores()
-      turns.innerHTML = 3 - diceThrow; //TODO maaske skal det parses
+      turns.innerHTML = 3 - (diceThrow + 1);
     }
   }
 
@@ -53,15 +53,16 @@ async function init() {
       let diceNumber = event.target.id.charAt(3)
       //Fixes off by one error
       diceNumber--
-      let die = await dice.getDice()[diceNumber];
+      let diceArray = await dice.getDice()
+      let die = diceArray[diceNumber];
       if (die.hold == true) {
         event.target.style.border = '0px solid'
         event.target.style.borderRadius = "15px"
-        die.hold = false;//TODO det her kreaver et post paa serveren
+        dice.toggleHold(diceNumber);
       } else {
         event.target.style.border = '2px solid #fe8019'
         event.target.style.borderRadius = "18px"
-        die.hold = true;//TODO ogsaa her
+        dice.toggleHold(diceNumber);
       }
     }
   }
@@ -72,23 +73,22 @@ async function init() {
     let textField = textFields[index]
     let score = textField.value
     //Posts a score serverside with /setScore(index,post)
-    dice.setScore(index);
+    await dice.setScore(index);
 
     //Disables button, so that score can no longer be set
     textField.style.backgroundColor = '#83a598'
     event.target.disabled = true
 
-    //TODO, her opdatere vi den visuelle representation af point felterne
+    //Here we update the visual representation of points
+    total.value = await dice.totalScore()
+    pairSum.value = await dice.pairScore()
+    bonus.value = await dice.getBonus()
     resetThrowCount()
-    total.value = dice.totalScore() //TODO
-    pairSum.value = dice.pairScore() //TODO
-    bonus.value = dice.getBonus() //TODO
   }
 
 
   async function resetThrowCount() {
-    turns.innerHTML = 3 - (await getThrowCount());
-    dice.resetDice() //TODO
+    turns.innerHTML = 3 - (await dice.getThrowCount());
     updateDieImage()
     smartUpdateScores()
     resetHold()

@@ -40,25 +40,54 @@ export async function getDice() {
 }
 
 export async function getPlayerScores() {
-  let dice;
+  let playerScores;
   try {
-    dice = await get(baseUrl + "/getPlayerScores");
+    playerScores = await get(baseUrl + "/getPlayerScores");
   } catch (error) {
     console.log(error);
   }
-  return dice;
+  return playerScores;
 }
 
 export async function getCurrentScores() {
-  let dice;
+  let currentScores;
   try {
-    dice = await get(baseUrl + "/getCurrentScores");
+    currentScores = await get(baseUrl + "/getCurrentScores");
   } catch (error) {
     console.log(error);
   }
-  return dice;
+  return currentScores;
 }
 
+
+export async function totalScore() {
+  let totalScore;
+  try {
+    totalScore = await get(baseUrl + "/getTotalScore");
+  } catch (error) {
+    console.log(error);
+  }
+  return totalScore;
+}
+
+export async function pairScore() {
+  let pairScore;
+  try {
+    pairScore = await get(baseUrl + "/getPairScore");
+  } catch (error) {
+    console.log(error);
+  }
+  return pairScore;
+}
+export async function getBonus() {
+  let bonus;
+  try {
+    bonus = await get(baseUrl + "/getBonus");
+  } catch (error) {
+    console.log(error);
+  }
+  return bonus;
+}
 export async function throwDice() {
   try {
     let respons = await post(baseUrl + "/throwDice", {});

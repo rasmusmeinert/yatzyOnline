@@ -1,4 +1,6 @@
+
 // Setup dice array
+export let players = [];
 let die = { face: NaN, hold: false }
 
 export let dice = []
@@ -12,8 +14,22 @@ for (let i = 0; i < 5; i++) {
 export let currentScores = []
 export let playerScores = []
 
+export function newGame(player) {
+  //Init player object
+  player = { dice: [] }
+  player.currentScores = [];
+  player.playerScores = [];
+  player.throwCount = 0;
+  for (let i = 0; i < 5; i++) {
+    player.dice[i] = Object.create(die)
+  }
+  //Add player to list of players
+  players.push(player);
+  console.log(player);
+}
+
 //Throw all dice that are not on hold
-export function throwDice() {
+export function throwDice(player) {
   throwCount++
   for (let die of dice) {
     if (die.hold === false) {
@@ -46,18 +62,18 @@ export function totalScore() {
   return totalScore
 }
 
-export function pairScore(){
+export function pairScore() {
   let pairScore = 0
-  for (let i = 0; i < 6; i++){
-    if (playerScores[i] != undefined){
+  for (let i = 0; i < 6; i++) {
+    if (playerScores[i] != undefined) {
       pairScore += playerScores[i]
     }
   }
   return pairScore
 }
 
-export function getBonus(){
-  if (pairScore() >= 63){
+export function getBonus() {
+  if (pairScore() >= 63) {
     return 50
   }
   else return 0
@@ -186,3 +202,6 @@ export function yatzyPoints() {
   }
   return 0
 }
+
+let playerOne;
+newGame(playerOne);

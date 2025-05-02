@@ -23,6 +23,17 @@ app.get("/getPlayerScores", (request, response) => {
   response.send(logic.playerScores);
 })
 
+app.get("/getTotalScore", (request, response) => {
+  response.send(logic.totalScore());
+})
+
+app.get("/getBonus", (request, response) => {
+  response.send(logic.getBonus());
+})
+
+app.get("/getPairScore", (request, response) => {
+  response.send(logic.pairScore());
+})
 
 app.post("/throwDice", (request, response) => {
   console.log('Dice thrown')
