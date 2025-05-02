@@ -8,40 +8,49 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/getDice", (request, response) => {
-  response.send(logic.dice);
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(player.dice);
 })
 
 app.get("/getThrowCount", (request, response) => {
-  response.send(logic.throwCount);
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(player.throwCount);
 })
 
 app.get("/getCurrentScores", (request, response) => {
-  response.send(logic.currentScores);
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(player.currentScores);
 })
 
 app.get("/getPlayerScores", (request, response) => {
-  response.send(logic.playerScores);
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(player.playerScores);
 })
 
 app.get("/getTotalScore", (request, response) => {
-  response.send(logic.totalScore());
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(totalScore(player));
 })
 
 app.get("/getBonus", (request, response) => {
-  response.send(logic.getBonus());
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(logic.getBonus(player));
 })
 
 app.get("/getPairScore", (request, response) => {
-  response.send(logic.pairScore());
+  let player = logic.findPlayer([request.body.playerID])
+  response.send(logic.pairScore(player));
 })
 
 app.post("/throwDice", (request, response) => {
+  let player = logic.findPlayer([request.body.playerID])
   console.log('Dice thrown')
-  logic.throwDice();
+  logic.throwDice(player);
   response.status(201);
   response.send();
 })
 
+//TODO we probably need to rethink this, as it is now multipalyer
 app.post("/toggleHold", (request, response) => {
   let die = logic.dice[request.body.die];
   die.hold = die.hold == true ? false : true;
