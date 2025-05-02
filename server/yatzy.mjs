@@ -30,10 +30,10 @@ export function newGame(player) {
 
 //Throw all dice that are not on hold
 export function throwDice(player) {
-  throwCount++
+  player.throwCount++
   for (let die of dice) {
-    if (die.hold === false) {
-      die.face = Math.floor(Math.random() * 6 + 1)
+    if (player.die.hold === false) {
+      player.die.face = Math.floor(Math.random() * 6 + 1)
     }
   }
   getResults()
