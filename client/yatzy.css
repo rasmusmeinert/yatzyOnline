@@ -16,6 +16,28 @@ section {
     border-radius: 10px;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /*grid-template-rows: auto auto;*/
+}
+
+.section1, .section2 {
+    padding: 1px;
+    margin: 1px;
+}
+
+.section1 {
+    background-color: lightcoral; /*temp*/
+    grid-column: 1;
+}
+
+.section2 {
+    background-color: lightgreen; /*temp*/
+    grid-row: 1 /span 2;
+    grid-column: 2;
+}
+
 input[type="text"] {
     width: 50px;
     background-color: #fbf1c7;
