@@ -4,12 +4,11 @@ body {
     background-color: #282828;
 }
 
-p {
+p, strong {
     color: #928374;
 }
 
 section {
-    width: 45%;
     padding: 10px;
     border: 1px solid #928374;
     margin: 10px;
@@ -18,23 +17,31 @@ section {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    /*grid-template-rows: auto auto;*/
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
 }
 
-.section1, .section2 {
-    padding: 1px;
-    margin: 1px;
+#diceSection {
+    grid-row: 1;
+    grid-column: 1 /span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
-.section1 {
-    background-color: lightcoral; /*temp*/
+#diceSection > p {
+    align-self: flex-start;
+    margin: 0px;
+    padding: 10px;
+}
+
+#scoreSection {
+    grid-row: 2;
     grid-column: 1;
 }
 
-.section2 {
-    background-color: lightgreen; /*temp*/
-    grid-row: 1 /span 2;
+#playerSection {
+    grid-row: 2;
     grid-column: 2;
 }
 
@@ -47,6 +54,8 @@ input[type="text"] {
     background-color: #fe8019;
     border-radius: 5px;
     padding: 10px 10px;
+    align-self: flex-end;
+    margin: 10px;
 }
 
 #btnRoll:hover {
@@ -72,7 +81,6 @@ label {
     border-radius: 2px;
     padding: 4px 7px;
     width: 135px;
-
 }
 
 .btnScores:hover {
@@ -104,7 +112,8 @@ label {
 }
 
 .dice {
-    width: 15%;
-    height: 15%;
+    flex: 1;
+    max-width: 15%;
+    height: auto;
     margin: 5px;
 }

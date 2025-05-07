@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="grid-container">
-            <section id="diceSection" class="section1">
+            <section id="diceSection">
                 <div id="dicePane">
                     <img src="images/dice0.png" class="dice" id="die1">
                     <img src="images/dice0.png" class="dice" id="die2"> 
@@ -16,11 +16,13 @@
                     <img src="images/dice0.png" class="dice" id="die4">
                     <img src="images/dice0.png" class="dice" id="die5">            
                 </div>
-                <p>Rolls: <span id="turns">3</span></p>
-                <button type="button" id="btnRoll">Roll</button>
+                <div id="controls">
+                    <p>Rolls: <span id="turns">3</span></p>
+                    <button type="button" id="btnRoll">Roll</button>
+                </div>
             </section>
 
-            <section id="scoreSection" class="section1">
+            <section id="scoreSection">
                 <div id="scorePane">
                     <label class="col1"><button type="button" class="btnScores">1-s</button></label>
                     <input type="text" id="txfOnes" value="" class="col2" disabled>
@@ -67,10 +69,12 @@
                 </div>
             </section>
 
-            <section id="playerSection" class="section2">
+            <section id="playerSection">
                 <div id="playerPane">
-                    <p>Test</p>
-                    <p>Test</p>
+                    <strong>Players</strong>
+                    <p>Player1: x</p>
+                    <p>Player2: y</p>
+                    <p>Player3: z</p>
                 </div>
             </section>
         </div>
