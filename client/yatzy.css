@@ -142,7 +142,35 @@ label {
 
 .dice {
     flex: 1;
-    max-width: 15%;
+    max-width: 10%;
     height: auto;
     margin: 5px;
+}
+
+.player0 {
+    color: #fb4934;
+}
+
+.player1 {
+    color: #b8bb26;
+}
+
+.player2 {
+    color: #fabd2f;
+}
+
+.player3 {
+    color: #83a598;
+}
+
+.player4 {
+    color: #d3869b;
+}
+
+.player5 {
+    color: #8ec07c;
+}
+
+.player6 {
+    color: #fe8019;
 }
