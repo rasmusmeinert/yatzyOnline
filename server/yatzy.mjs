@@ -167,7 +167,7 @@ export function fourSamePoints(player) {
 export function fullHousePoints(player) {
   for (let i = 6; i > 0; i--) {
     if (frequency(player)[i] === 3) {
-      for (let j = i - 1; j > 0; j--) {
+      for (let j = 6; j > 0; j--) {
         if (frequency(player)[j] === 2) {
           return i * 3 + j * 2
         }
@@ -214,5 +214,6 @@ export function yatzyPoints(player) {
   return 0
 }
 
-let names = ["Rasmus", "Mark", "Christian", "Jakob med C", "Tobias", "Mads", "Nilb0t", "Phillip","Jens "]
-names.forEach(e => newGame(e));
+//NOTE Nametest
+// let names = ["Rasmus", "Mark", "Christian", "Jakob med C", "Tobias", "Mads", "Nilb0t", "Phillip","Jens "]
+// names.forEach(e => newGame(e));
