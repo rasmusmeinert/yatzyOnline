@@ -97,7 +97,7 @@ input[type="text"] {
 
 #scorePane {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 2fr 2fr;
 }
 
 label {
@@ -109,7 +109,7 @@ label {
     background-color: #fbf1c7;
     border-radius: 2px;
     padding: 4px 7px;
-    width: 135px;
+    width: 130px;
 }
 
 .btnScores:hover {
