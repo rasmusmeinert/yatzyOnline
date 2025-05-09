@@ -23,11 +23,11 @@ async function init() {
   let pairSum = document.querySelector("#txfSum")
   let bonus = document.querySelector("#txfBonus")
   let btnScores = Array.from(document.querySelectorAll(".btnScores"))
+  let scoreBoard = document.querySelector("#playerSection");
 
   let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
     , smallStraight, largeStraight, chance, yatzy]
 
-  //TODO det her VIRKER IKKE >:(((((
   let playerID = sessionStorage.getItem('playerID');
   dice.setPlayerID(playerID);
 
@@ -130,6 +130,25 @@ async function init() {
     }
 
   }
+
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function updateScoreboard() {
+    while (true) {
+      let players = await dice.getPlayers();
+      console.log(players)
+      let html = ["<strong> Players </strong>"];
+      for (let p in players) {
+        html.push(`<p id="player${(p % 7)}">${players[p].playerID}: ${players[p].playerTotalScore} </p>`)
+      }
+      scoreBoard.innerHTML = html.join("");
+      await sleep(2500);
+    }
+  }
+  updateScoreboard();
 }
 
 init();

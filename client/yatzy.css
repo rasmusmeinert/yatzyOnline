@@ -147,30 +147,30 @@ label {
     margin: 5px;
 }
 
-.player0 {
+#player0 {
     color: #fb4934;
 }
 
-.player1 {
+#player1 {
     color: #b8bb26;
 }
 
-.player2 {
+#player2 {
     color: #fabd2f;
 }
 
-.player3 {
+#player3 {
     color: #83a598;
 }
 
-.player4 {
+#player4 {
     color: #d3869b;
 }
 
-.player5 {
+#player5 {
     color: #8ec07c;
 }
 
-.player6 {
+#player6 {
     color: #fe8019;
 }

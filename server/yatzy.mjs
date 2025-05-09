@@ -15,20 +15,20 @@ export let playerScores = []
 
 export function findPlayer(playerID) {
   //Find and return the player with the given playerID
-  // console.log("Finding Player: " + playerID) //Debug info
+  console.log("Finding Player: " + playerID) //Debug info
   let foundPlayer;
   for (let p of players) {
-    if (p.playerID = playerID) {
-      foundPlayer = p
+    if (p.playerID == String(playerID)) {
+      foundPlayer = p;
     }
   }
-  // console.log("Found: " + foundPlayer); //Debug info
+  console.log("Found: " + foundPlayer); //Debug info
   return foundPlayer;
 }
 
 export function newGame(playerID) {
   //Init player object
-  let player = { playerID: playerID, dice: [], currentScores: [], playerScores: [], throwCount: 0 }
+  let player = { playerID: playerID, dice: [], currentScores: [], playerScores: [], throwCount: 0, playerTotalScore: 0 }
   for (let i = 0; i < 5; i++) {
     player.dice[i] = Object.create(die)
   }
@@ -68,6 +68,7 @@ export function totalScore(player) {
     }
   }
   totalScore += getBonus(player)
+  player.playerTotalScore = totalScore;
   return totalScore
 }
 
@@ -213,4 +214,5 @@ export function yatzyPoints(player) {
   return 0
 }
 
-
+let names = ["Rasmus", "Mark", "Christian", "Jakob med C", "Tobias", "Mads", "Nilb0t", "Phillip","Jens "]
+names.forEach(e => newGame(e));
