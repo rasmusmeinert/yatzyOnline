@@ -2,69 +2,15 @@
 <html>
     <head>
         <title>Yatzy</title>
-        <script type="module" src="gui.mjs" defer></script>
-        <link rel="stylesheet" href="yatzy.css">
+        <script type="module" src="login.mjs" defer></script>
+        <link rel="stylesheet" href="login.css">
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
     </head>
     <body>
-        <section id="diceSection">
-            <div id="dicePane">
-                <img src="images/dice0.png" class="dice" id="die1">
-                <img src="images/dice0.png" class="dice" id="die2"> 
-                <img src="images/dice0.png" class="dice" id="die3">
-                <img src="images/dice0.png" class="dice" id="die4">
-                <img src="images/dice0.png" class="dice" id="die5">            
-            </div>
-                <p>Rolls: <span id="turns">3</span></p>
-                <button type="button" id="btnRoll">Roll</button>
-            </div>
-        </section>
-
-        <section id="scoreSection">
-            <div id="scorePane">
-                <label class="col1"><button type="button" class="btnScores">1-s</button></label>
-                <input type="text" id="txfOnes" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">2-s</button></label>
-                <input type="text" id="txfTwos" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">3-s</button></label>
-                <input type="text" id="txfThrees" value="" disabled>
-                <label class="col1"><button type="button" class="btnScores">4-s</button></label>
-                <input type="text" id="txfFours" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">5-s</button></label>
-                <input type="text" id="txfFives" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">6-s</button></label>
-                <input type="text" id="txfSixes" value="" class="col2" disabled>
-                <div class = "col3">
-                <label>Sum:</label>
-                <input type="text" id="txfSum" value="" disabled>
-                </div>
-                <div class = "col4">
-                <label >Bonus:</label>
-                <input type="text" id="txfBonus" value="" disabled>
-                </div>
-                <label class="col1"><button type="button" class="btnScores">One pair</button></label>
-                <input type="text" id="txfOnePair" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Two pairs</button></label>
-                <input type="text" id="txfTwoPairs" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Three same</button></label>
-                <input type="text" id="txfThreeSame" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Four same</button></label>
-                <input type="text" id="txfFourSame" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Full house</button></label>
-                <input type="text" id="txfFullHouse" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Small straight</button></label>
-                <input type="text" id="txfSmallStraight" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Large straight</button></label>
-                <input type="text" id="txfLargeStraight" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Chance</button></label>
-                <input type="text" id="txfChance" value="" class="col2" disabled>
-                <label class="col1"><button type="button" class="btnScores">Yatzy</button></label>
-                <input type="text" id="txfYatzy" value="" class="col2" disabled>
-                <div class ="col4">
-                <label>Total:</label>
-                <input type="text" id="txfTotal" value="" disabled>
-                </div>
-            </div>
-        </section>
+        <div class="login-container">
+            <p>Welcome to Yatzy</p>
+            <input type="text" id="login" placeholder="Enter your username">
+            <button id="btnLogin">Go!</button>
+        </div>
     </body>
 </html>

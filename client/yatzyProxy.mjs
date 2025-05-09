@@ -1,7 +1,10 @@
 // import fetch from "node-fetch";
 const baseUrl = "http://localhost:8000"
-//TODO this is just to test player ID 
-const playerID = "rasmus"
+let playerID;
+
+export function setPlayerID(playerName){
+  playerID = playerName;
+}
 
 export async function get(url) {
   const respons = await fetch(url);
@@ -21,10 +24,21 @@ export async function post(url, objekt) {
   return await respons.text();
 }
 
+export async function getPlayers() {
+  let players;
+  try {
+    players = await get(baseUrl + `/getPlayers`);
+  } catch (error) {
+    console.log(error);
+  }
+  return players;
+}
+
+
 export async function getThrowCount() {
   let throwCount;
   try {
-    throwCount = await get(baseUrl + "/getThrowCount", {playerID: "rasmus"});
+    throwCount = await get(baseUrl + `/getThrowCount?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +48,7 @@ export async function getThrowCount() {
 export async function getDice() {
   let dice;
   try {
-    dice = await get(baseUrl + "/getDice", {playerID: playerID});
+    dice = await get(baseUrl + `/getDice?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -44,7 +58,7 @@ export async function getDice() {
 export async function getPlayerScores() {
   let playerScores;
   try {
-    playerScores = await get(baseUrl + "/getPlayerScores", {playerID: playerID});
+    playerScores = await get(baseUrl + `/getPlayerScores?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -54,7 +68,7 @@ export async function getPlayerScores() {
 export async function getCurrentScores() {
   let currentScores;
   try {
-    currentScores = await get(baseUrl + "/getCurrentScores", {playerID: playerID});
+    currentScores = await get(baseUrl + `/getCurrentScores?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -65,7 +79,7 @@ export async function getCurrentScores() {
 export async function totalScore() {
   let totalScore;
   try {
-    totalScore = await get(baseUrl + "/getTotalScore", {playerID: playerID});
+    totalScore = await get(baseUrl + `/getTotalScore?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -75,7 +89,7 @@ export async function totalScore() {
 export async function pairScore() {
   let pairScore;
   try {
-    pairScore = await get(baseUrl + "/getPairScore", {playerID: playerID});
+    pairScore = await get(baseUrl + `/getPairScore?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -84,7 +98,7 @@ export async function pairScore() {
 export async function getBonus() {
   let bonus;
   try {
-    bonus = await get(baseUrl + "/getBonus", {playerID: playerID});
+    bonus = await get(baseUrl + `/getBonus?playerID=${playerID}`);
   } catch (error) {
     console.log(error);
   }
@@ -114,3 +128,11 @@ export async function setScore(index) {
   }
 }
 
+export async function newGame(player) {
+  playerID = player;
+  try {
+    let response = await post(baseUrl + "/newGame", {playerID: playerID})
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -27,6 +27,11 @@ async function init() {
   let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
     , smallStraight, largeStraight, chance, yatzy]
 
+  //TODO det her VIRKER IKKE >:(((((
+  let playerID = sessionStorage.getItem('playerID');
+  dice.setPlayerID(playerID);
+
+
   btnRoll.onclick = rollClick
 
   for (let die of diceImages) {

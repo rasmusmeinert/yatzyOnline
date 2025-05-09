@@ -5,7 +5,6 @@ let die = { face: NaN, hold: false }
 
 export let dice = []
 
-export let throwCount = 0
 
 for (let i = 0; i < 5; i++) {
   dice[i] = Object.create(die)
@@ -16,8 +15,15 @@ export let playerScores = []
 
 export function findPlayer(playerID) {
   //Find and return the player with the given playerID
-  let player = players.filter(e => e.playerID === playerID)
-  return player[0];
+  // console.log("Finding Player: " + playerID) //Debug info
+  let foundPlayer;
+  for (let p of players) {
+    if (p.playerID = playerID) {
+      foundPlayer = p
+    }
+  }
+  // console.log("Found: " + foundPlayer); //Debug info
+  return foundPlayer;
 }
 
 export function newGame(playerID) {
@@ -28,6 +34,7 @@ export function newGame(playerID) {
   }
   //Add player to list of players
   players.push(player);
+  console.log(players);
 }
 
 //Throw all dice that are not on hold
@@ -112,6 +119,7 @@ export function frequency(player) {
 //Return the amount of points for a given value (1-6)
 export function sameValuePoints(value, player) {
   return frequency(player)[value] * value
+  console.log(`Score ${request.body.index} is now ${logic.currentScores[request.body.index]}`)
 }
 
 //Return the amount of points for the highest pair
@@ -206,4 +214,3 @@ export function yatzyPoints(player) {
 }
 
 
-newGame("rasmus");
