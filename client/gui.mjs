@@ -142,7 +142,7 @@ async function init() {
       console.log(players)
       let html = ["<strong> Players </strong>"];
       for (let p in players) {
-        html.push(`<p id="player${(p % 6)}">${players[p].playerID}: ${players[p].playerTotalScore} </p>`)
+        html.push(`<p id="player${(p % 7)}">${players[p].playerID}: ${players[p].playerTotalScore} </p>`)
       }
       scoreBoard.innerHTML = html.join("");
       await sleep(2500);

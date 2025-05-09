@@ -214,4 +214,5 @@ export function yatzyPoints(player) {
   return 0
 }
 
-
+let names = ["Rasmus", "Mark", "Christian", "Jakob med C", "Tobias", "Mads", "Nilb0t", "Phillip","Jens "]
+names.forEach(e => newGame(e));
